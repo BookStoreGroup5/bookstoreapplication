@@ -1,0 +1,63 @@
+<h3>Add Book Details</h3>
+
+<div style="margin-left: 15%;width: 5%; height:30%; margin-bottom: 20%;">
+   
+    <form (ngSubmit)="doFormSubmit" #bookForm>
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" [(ngModel)]="b.title" name="title" #title="ngModel">
+        </div>
+        <div class="form-group">
+            <label>Author</label>
+            <input type="text" [(ngModel)]="b.author" name="author" #author="ngModel">
+        </div>
+        <div class="form-group">
+            <label>category</label>
+                <select  [(ngModel)]="b.category" name="category" #category="ngModel">
+                     <option slected>select </option>
+                     <option value="FairyTales">FairyTales</option>
+                     <option value="Fiction">Fiction</option>
+                     <option value="Classics"> Classics</option>
+                     <option value="Horror">Horror</option>
+                     <option value="programming"> Programming</option>
+                     <option value="crime">Crime</option>
+                     <option value="literature">Literature</option>
+                     <option value="meditation">Meditation</option>
+               </select>            
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" [(ngModel)]="b.description" name="description" #description="ngModel">
+        </div>
+        <div class="form-group">
+            <label>Price</label>
+            <input type="text" [(ngModel)]="b.price" name="price" #price="ngModel">
+        </div>
+        <div class="form-group">
+            <label>Discount</label>
+            <input type="text" [(ngModel)]="b.discount" name="discount" #discount="ngModel">
+        </div>
+        <div class="form-group">
+            <label>PublishDate</label>
+            <input type="text" [(ngModel)]="b.publishDate" name="publishDate" #publishDate="ngModel">
+        </div>
+        <div class="form-group">
+            <label>language</label>
+            <select [(ngModel)]="b.language" name="language" #language="ngModel">
+                <option value="disabled">Select</option>
+                <option value="Telugu">Telugu</option>
+                <option value="Hindi">Hindi</option>
+                <option value="English">English</option>
+                <option value="Korean" >Korean</option>
+                <option value="German">German</option>
+                <option value="Chinese">Chinese</option>
+            </select>
+       </div>
+       <div>
+            <label>ImageName</label>
+            <input type="text" [(ngModel)]="b.imageName" name="imageName" #imageName="ngModel">
+       </div>
+        <button type="submit" class="btn btn-primary mb-2" (click)="readBook(title.value,author.value,category.value,description.value,price.value,discount.value,publishDate.value,language.value,imageName.value)" >Add Book</button>   
+    </form>  
+</div>
+

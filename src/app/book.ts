@@ -1,0 +1,41 @@
+export class Book {
+
+    bookId:number;
+    title:string;
+    author:string;
+    category:string;
+    description:string;
+    price:string;
+    discount:string;
+    publishDate:string;
+    lastUpdatedOn:string;
+    language:string;
+    imageName:string;
+
+    constructor(
+        bookId:number,
+        title:string,
+        author:string,
+        category:string,
+        description:string,
+        price:string,
+        discount:string,
+        publishDate:string,
+        lastUpdatedOn:string,
+        language:string,
+        imageName:string
+    )
+    {
+        this.bookId=bookId;
+        this.title=title;
+        this.author=author;
+        this.category=category;
+        this.description=description;
+        this.discount=discount;
+        this.price=price;
+        this.publishDate=publishDate;
+        this.lastUpdatedOn=lastUpdatedOn;
+        this.language=language;
+        this.imageName=imageName;
+    }
+}

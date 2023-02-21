@@ -1,0 +1,29 @@
+<h3>Book Details</h3>
+
+<table *ngFor="let b of allBooks" style="width:50%;">
+    <tr>
+        <td>
+            <p>{{b.imageName}}</p>
+        </td>
+        <td>
+            <p>{{b.title}}></p>
+        </td>
+        <td>
+            <p>{{b.author}}</p>
+        </td>
+        <td>
+            <p>{{b.category}}</p>
+        </td>
+        <td>
+            <p>{{b.description}}</p>
+        </td>
+        <td>
+            <p>{{b.price}}</p>
+        </td>
+        <td>
+            <p>{{b.discount}}</p>
+        </td>
+        <td><p>{{b.publishDate}}</p></td>
+        <td><p>{{b.language}}</p></td>
+    </tr>
+</table>
