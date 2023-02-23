@@ -4,17 +4,15 @@ import { BookOperationsService } from '../book-operations.service';
 import { BookDetailedDTO } from '../bookDetailed-dto';
 
 @Component({
-  selector: 'app-best-sellers',
-  templateUrl: './best-sellers.component.html',
-  styleUrls: ['./best-sellers.component.css']
+  selector: 'app-books',
+  templateUrl: './books.component.html',
+  styleUrls: ['./books.component.css']
 })
-export class BestSellersComponent {
+export class BooksComponent {
 
   __bookService:BookOperationsService
 
-
   allBooks:Array<BookDetailedDTO> =[];
-  books:Array<Book> =[];
   wishList:Array<BookDetailedDTO> =[];
   wishListCount: number=0;
   
@@ -25,10 +23,21 @@ export class BestSellersComponent {
   constructor(bookService:BookOperationsService)
   {
     this.__bookService=bookService;
-    this.books=this.__bookService.getBooksByDiscount();
+    
   }
 
-  
+  veiwAllBooks(){
+    this.__bookService.getAllBooks().subscribe(
+      data=>{
+        console.log("dataa:-"+data);
+        this.allBooks=data;
+      },
+      err=>{
+        console.log("error from spring",err);
+      }
+    )
+  }
+
   goForBuy(book:string)
  {
   let bookId =parseInt(book);
@@ -48,4 +57,15 @@ export class BestSellersComponent {
   console.log(this.wishList);
 
  }
+ veiwAllBooksByCategory(category:string){
+  this.__bookService.getBookByCategory(category).subscribe(
+    data=>{
+      console.log("data:-"+data);
+      this.allBooks=data;
+    },err=>{
+      console.log("error from spring",err);
+    }
+  )
+ }
+ 
 }
