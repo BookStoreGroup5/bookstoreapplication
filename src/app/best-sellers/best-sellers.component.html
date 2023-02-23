@@ -1,0 +1,26 @@
+<p>best-sellers works!</p>
+<div  style="margin-left: 10%;"  *ngFor="let b of books" >
+    <table>
+        <tr>
+            <td> 
+                <img src="/assets/images/{{b.imageName}}" alt="images" width="120px" height="150px">
+            </td>
+            <td>
+                <h2>{{b.title}} </h2>
+                <p> {{b.description}} </p>
+                <hr/>
+                <span><b>Price</b>
+                    <span [style]="b.price<2000?priceLowCss:priceNormalCSS" ><i>Rs</i>{{b.price}}</span>  
+                    <i *ngIf="b.discount>0"> 
+                        with {{b.discount}}% Off 
+                        <span *ngIf="b.discount>9">
+                            <b style="color:#FFBF00"><u> *Recommended</u></b>
+                        </span>
+                    </i> 
+                </span> 
+                <br/>         
+            </td>    
+        </tr>
+    </table>
+
+</div>

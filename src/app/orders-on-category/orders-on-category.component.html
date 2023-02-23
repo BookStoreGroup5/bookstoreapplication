@@ -1,0 +1,23 @@
+<select #categoryName>
+    <option>Biographies&Memoirs</option>
+    <option >Fiction</option>
+    <option >General</option>
+    <option >History&Humanities</option>
+    <option>Lifestyle</option>
+    <option>Technology&Engineering</option>
+</select>
+
+<button (click)="getOrders(categoryName.value)">Load Orders</button>
+
+
+<div *ngFor="let p of allOrders">
+    <div> {{p.bookingOrderId}}</div>
+    <div> {{p.orderDate}}</div>
+    <div> {{p.totalCost}}</div>
+    <div> {{p.customerId}}</div>
+    <div> {{p.productId}}</div>
+    <div> {{p.category}}</div>
+    <div>{{p.transactionMode}}</div>
+    <div>{{p.quantity}}</div><br/>
+    <hr/>
+</div>
