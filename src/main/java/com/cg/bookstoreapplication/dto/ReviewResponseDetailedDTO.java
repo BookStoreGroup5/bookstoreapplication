@@ -8,9 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReviewResponseDetailedDTO {
-
 	private int reviewId;
-	private String customerName;
-	private int customerId;
-	private double rating;
+	private int bookId;
+	private int rating;
+	private String comment;
 }

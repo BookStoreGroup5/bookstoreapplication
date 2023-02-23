@@ -83,10 +83,10 @@ public class IAuthorServiceImpl implements  IAuthorService {
 	
 	
 
-	@Override
+	/*@Override
 	public List<Author> findAuthorByCategory(String category) {
 		
 		return authorRepository.findAuthorByCategory(category);
 	}
-
+*/
 }

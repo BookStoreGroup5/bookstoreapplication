@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +27,7 @@ import com.cg.bookstoreapplication.util.AuthorDTOConvertor;
 
 @RestController
 @RequestMapping("/author")
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8085"},allowedHeaders = "*")
 public class AuthorRestController {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -88,7 +90,7 @@ public AuthorRestController() {
 		return new ResponseEntity<AuthorResponseDetailedDTO>(dto,HttpStatus.OK);
 		
 	}
-	@GetMapping("/category/{category}")
+	/*@GetMapping("/category/{category}")
 	public ResponseEntity<List<AuthorResponseDetailedDTO>> getAuthorByCategory(@PathVariable String category)
 	{
 		logger.info("\n Listing authors based on category \n");
@@ -100,5 +102,5 @@ public AuthorRestController() {
 		}
 		return new ResponseEntity<List<AuthorResponseDetailedDTO>>(dto,HttpStatus.OK);
 	}
-	
+	*/
 }

@@ -3,6 +3,8 @@ package com.cg.bookstoreapplication.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +24,10 @@ import com.cg.bookstoreapplication.entities.Review;
 import com.cg.bookstoreapplication.service.IReviewService;
 import com.cg.bookstoreapplication.util.ReviewDTOConvertor;
 
-
 @RestController
 @RequestMapping("/review")
 public class ReviewRestController {
 
-	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
@@ -35,15 +35,13 @@ public class ReviewRestController {
 
 	@Autowired
 	ReviewDTOConvertor dtoConvertor;
-	
-	 public ReviewRestController(){
+
+	public ReviewRestController() {
 		logger.info("---Review Controller Called --");
 		logger.warn("---Review Controller Called --");
-		
+
 		System.err.println("Review Controller Called");
 	}
-
-	
 
 	@PostMapping("/addreview")
 	public ResponseEntity<ReviewResponseDTO> addReview(@RequestBody Review review) throws Exception {
@@ -84,17 +82,35 @@ public class ReviewRestController {
 		return new ResponseEntity<ReviewResponseDetailedDTO>(dto,HttpStatus.OK);
 		
 	}
-
 	
-	@GetMapping("/customerid/{customerId}")
-	public ResponseEntity<ReviewResponseDetailedDTO> getReviewByCustomerId(@PathVariable int customerId)throws Exception {
-
-		Review savedReview = reviewService.getReviewByCustomerId(customerId);
-		ReviewResponseDetailedDTO dto = dtoConvertor.getDetailedReviewDTO(savedReview);
-		return new ResponseEntity<ReviewResponseDetailedDTO>(dto,HttpStatus.OK);
-
+	@GetMapping("avgreview/bookId/{bookId}")
+	public int getAverageReviewByBookId(@PathVariable int bookId) throws EntityNotFoundException
+	{
+		List<Review> allReviewsInDB = reviewService.listAllReviewsByBookId(bookId);
+		if(allReviewsInDB.isEmpty()) {
+			throw new EntityNotFoundException("No Book exists with this Key"+bookId);
+		
+		
+		}else {
+			int count=0;
+			int avg=0;
+			int totalreview=0;
+			for(Review review : allReviewsInDB) {
+				count++;
+				totalreview+=review.getRating();
+			}
+			avg=totalreview/count;
+			return avg;
+		}
+	
 	}
 	
+
+	
+	@GetMapping("/{bookId}")
+	public List<Review> ListAllReviewsByBookId(@PathVariable("bookId") int BookId){
+		return reviewService.listAllReviewsByBookId(BookId);
+	}
 		
 	@PutMapping("/BookId/{bid}/reviewid/{reviewid}")
 	public ResponseEntity<ReviewResponseDetailedDTO> updateReviewByBookId(@PathVariable int bid,@PathVariable int reviewid)throws Exception
@@ -113,5 +129,5 @@ public class ReviewRestController {
 		return null;
 				
 	}
-	
+
 }

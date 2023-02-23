@@ -13,6 +13,6 @@ public interface IAuthorService {
 	public Author getAuthorByAuthorName(String authorName) throws Exception;
 	public Author getAuthorById(int authorId) throws Exception;
 	
-	public List<Author> findAuthorByCategory(String category);
+	//public List<Author> findAuthorByCategory(String category);
 	
 }

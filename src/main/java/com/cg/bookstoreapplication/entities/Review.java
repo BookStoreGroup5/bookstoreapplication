@@ -16,22 +16,21 @@ public class Review {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int reviewId;
-	private String CustomerName;
-	private int bookid;
-	private int customerId;
+	
+	private int bookId;
+	private int rating;
 	private String comment;
-	private double rating;
-	private String reviewOn;
 	
 	
-	public Review(String customerName, int customerId, String comment, double rating, String reviewOn) {
+	
+	
+	public Review( String comment, int rating) {
 		super();
 		
-		this.CustomerName=customerName;
-		this.customerId = customerId;
+		
 		this.comment = comment;
 		this.rating = rating;
-		this.reviewOn = reviewOn;
+		
 	}
 	
 }
