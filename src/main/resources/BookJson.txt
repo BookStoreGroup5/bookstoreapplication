@@ -1,0 +1,10 @@
+{
+    "title" : "Life",
+    "author" : "Bramha",
+    "category" : "Thriller",
+    "description" :"the book is about Life",
+    "isbn" : "67juy9",
+    "price" : 5000,
+    "publishDate" : "04/02/01",
+    "lastUpdatedOn": "4/02/23"
+}
