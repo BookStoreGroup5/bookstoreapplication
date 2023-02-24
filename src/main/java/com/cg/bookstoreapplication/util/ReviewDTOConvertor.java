@@ -11,7 +11,7 @@ public class ReviewDTOConvertor {
 
 	public ReviewResponseDTO getReviewDTO(Review r)
 	{
-		return new ReviewResponseDTO(r.getReviewId(), r.getCustomerName(),r.getRating(),"Thanks for the review");
+		return new ReviewResponseDTO(r.getReviewId(), r.getBookId(),r.getRating(),r.getComment());
 		
 		
 	}
@@ -21,9 +21,10 @@ public class ReviewDTOConvertor {
 		ReviewResponseDetailedDTO dto = new ReviewResponseDetailedDTO();
 		
 		dto.setReviewId(savedReview.getReviewId());
-		dto.setCustomerId(savedReview.getCustomerId());
-		dto.setCustomerName(savedReview.getCustomerName());
+		
 		dto.setRating(savedReview.getRating());
+		dto.setBookId(savedReview.getBookId());
+		dto.setComment(savedReview.getComment());
 		return dto;
 	}
 

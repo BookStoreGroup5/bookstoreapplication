@@ -2,6 +2,7 @@ package com.cg.bookstoreapplication.controller;
 
 import java.time.LocalDateTime;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -30,6 +33,7 @@ import com.cg.bookstoreapplication.util.BookDTOConvertor;
 
 @RestController
 @RequestMapping("/book")
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8085"},allowedHeaders = "*")
 public class BookRestController {
 	
 
@@ -55,7 +59,7 @@ public class BookRestController {
 		return "Welcome "+todayDate;
 	}
 	
-	@PostMapping("/addBook")
+	@PostMapping("/addbook")
 	public ResponseEntity<BookAdminResponseDTO> createBook(@RequestBody Book b) throws Exception
 	{
 		logger.info("\n Creating a book \n");
@@ -68,46 +72,39 @@ public class BookRestController {
 	}
 	
 	@GetMapping("/list")
-	public ResponseEntity<List<BookDTO>> listAllBooks() throws Exception
+	public ResponseEntity<List<BookDetailedDTO>> listAllBooks() throws Exception
 	{
 		logger.info("\n Finding the list of books \n");
 		List<Book> allBooks = bookService.listAllBooks(); // give us raw data (complete information , which we cannot share with users directly)
 		// Converting into DTO form , which we can share with user
-		List<BookDTO> allBookDTO = new ArrayList<>();
+		List<BookDetailedDTO> allBookDTO = new ArrayList<>();
 		
 		if(allBooks !=null &&allBooks.isEmpty()==false)
 		{
 		for (Book book : allBooks) {
-			allBookDTO.add(bookDTOConvertor.getBookDTO(book));
+			allBookDTO.add(bookDTOConvertor.getBookDetailedDTO(book));
 			}
-		return new ResponseEntity<List<BookDTO>>(allBookDTO,HttpStatus.OK);
+		return new ResponseEntity<List<BookDetailedDTO>>(allBookDTO,HttpStatus.OK);
 		}
 		else
-			return new ResponseEntity<List<BookDTO>>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<List<BookDetailedDTO>>(HttpStatus.NOT_FOUND);
 	}
 	@GetMapping("/category/{category}")
-	public ResponseEntity<List<BookDTO>> getBooksByCategory (@PathVariable String category) throws Exception
+	public ResponseEntity<List<BookDetailedDTO>> getBooksByCategory (@PathVariable String category) throws Exception
 	{
 		logger.info("\n Listing the books by category \n ");
 		List<Book> allBooks = bookService.listBooksByCategory(category);
-		List<BookDTO> allBookDTO = new ArrayList<>();
+		List<BookDetailedDTO> allBookDTO = new ArrayList<>();
 		
 		for (Book book : allBooks) {
-			allBookDTO.add(bookDTOConvertor.getBookDTO(book));
+			allBookDTO.add(bookDTOConvertor.getBookDetailedDTO(book));
 		}
-		return new ResponseEntity<List<BookDTO>>(allBookDTO,HttpStatus.OK);
+		return new ResponseEntity<List<BookDetailedDTO>>(allBookDTO,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/remove/{bookid}")
-	public  ResponseEntity<Boolean> deleteBook(@RequestBody int bookId) 
-	{
-		logger.info("\n Delete the book \n ");
-		  boolean status =bookService.deleteBook(bookId);
-		return new ResponseEntity<Boolean>(status,HttpStatus.OK) ;
-	}
 	
-	@GetMapping("/bookId/{id}")
-	public ResponseEntity<BookDetailedDTO> getBookById(@PathVariable int bookid) throws Exception
+	@GetMapping("/{id}")
+	public ResponseEntity<BookDetailedDTO> getBookById(@PathVariable("id") int bookid) throws Exception
 	{
 		logger.info("Book by id");
 		Book savedBook = bookService.findById(bookid);
@@ -124,6 +121,32 @@ public class BookRestController {
 		return new ResponseEntity<BookDetailedDTO>(dto,HttpStatus.OK);
 		
 	}
+	@GetMapping("/language/{language}")
+	public ResponseEntity<List<BookDetailedDTO>> getBooksByLanguage (@PathVariable String language) throws Exception
+	{
+		logger.info("\n Listing the books by language \n ");
+		List<Book> allBooks = bookService.findBooksbyLanguage(language);
+		List<BookDetailedDTO> allBookDTO = new ArrayList<>();
+		
+		for (Book book : allBooks) {
+			allBookDTO.add(bookDTOConvertor.getBookDetailedDTO(book));
+		}
+		return new ResponseEntity<List<BookDetailedDTO>>(allBookDTO,HttpStatus.OK);
+	}
+	
+	@GetMapping("/discount")
+	public ResponseEntity<List<BookDetailedDTO>> getBooksByDiscount () throws Exception
+	{
+		logger.info("\n Listing the books by discount \n ");
+		List<Book> allBooks = bookService.findBooksbyDiscount();
+		List<BookDetailedDTO> allBookDTO = new ArrayList<>();
+		
+		for (Book book : allBooks) {
+			allBookDTO.add(bookDTOConvertor.getBookDetailedDTO(book));
+		}
+		return new ResponseEntity<List<BookDetailedDTO>>(allBookDTO,HttpStatus.OK);
+	}
+	
 	@GetMapping("/title/{title}/author/{author}")
 	public ResponseEntity<BookDetailedDTO> getBookByTitleAndAuthor(@PathVariable String title,@PathVariable String author) throws Exception
 	{
@@ -133,7 +156,7 @@ public class BookRestController {
 		return new ResponseEntity<BookDetailedDTO>(dto,HttpStatus.OK);
 		
 	}
-	@PutMapping("/bookId/{bookId}/author/{authorId}")
+	@PutMapping("/bookid/{bookId}/authorid/{authorId}")
 	public ResponseEntity<BookDetailedDTO> updateBookByAuthorId(@PathVariable int bookId,@PathVariable int authorId) throws Exception
 	{
 		//call service layer & update book with author
@@ -145,6 +168,32 @@ public class BookRestController {
 		}
 		
 		return null;
+	}
+	@GetMapping("/author/{authorName}")
+	public ResponseEntity<List<BookDetailedDTO>> getBookByAuthorname(@PathVariable String authorName) throws Exception
+	{
+		logger.info("Books by title");
+		List<Book> savedBook = bookService.findByAuthorName(authorName);
+        List<BookDetailedDTO> allBookDTO = new ArrayList<>();
+		
+		for (Book book : savedBook) {
+			allBookDTO.add(bookDTOConvertor.getBookDetailedDTO(book));
+		}
+		return new ResponseEntity<List<BookDetailedDTO>>(allBookDTO,HttpStatus.OK);
+		
+	}
+	@GetMapping("/category/{category}/language/{language}")
+	public ResponseEntity<List<BookDetailedDTO>> getBooksByCategoryAndLanguage(@PathVariable String category,@PathVariable String language) throws Exception
+	{
+		logger.info("Books by title");
+		List<Book> savedBook = bookService.findBookByCategoryAndLanguage(category, language);
+        List<BookDetailedDTO> allBookDTO = new ArrayList<>();
+		
+		for (Book book : savedBook) {
+			allBookDTO.add(bookDTOConvertor.getBookDetailedDTO(book));
+		}
+		return new ResponseEntity<List<BookDetailedDTO>>(allBookDTO,HttpStatus.OK);
+		
 	}
 	
 	

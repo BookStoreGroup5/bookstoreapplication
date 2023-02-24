@@ -17,25 +17,9 @@ public class AuthorDTOConvertor {
 		AuthorResponseDetailedDTO dto = new AuthorResponseDetailedDTO();
 		dto.setAuthorId(author.getAuthorId());
 		dto.setAuthorName(author.getAuthorName());
-		if(author.getEmail()!=null &&author.getPhoneNumber()!=0)
-		{
-		String email = author.getEmail();
-		String phone = author.getPhoneNumber()+"";
-		
-		String contact = "";
-		
-		contact += (!email.isBlank() && !email.equals(" ") )?"[ "+email : "Email Not Updated";
-		contact += (!phone.isBlank() && !phone.equals(" ") )?" "+phone+" ]":"Phone Not Updated";
-		
-		dto.setRegisteredContactDetails(contact);
-	}
-	else 
-		{
-			dto.setRegisteredContactDetails("Not Yet Updated");
-		}
-	
+		dto.setAbout(author.getAbout());
 	dto.setNoOfBooksPublished(author.getNoOfBooksPublished());
-	dto.setCategory(author.getCategory());
+	dto.setImageName(author.getImageName());
 	
 	return dto;
 	}

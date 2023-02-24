@@ -1,6 +1,6 @@
 package com.cg.bookstoreapplication.entities;
 
-import java.time.LocalDate;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -27,10 +27,11 @@ public class Book {
 	private String author;
 	private String category;
 	private String description;
-	private String isbn;
 	private double price;
+	private int discount;
 	private String publishDate;
-	private String lastUpdatedOn;
+	private String language;
+	private String imageName;
 	
 	
 	
@@ -38,17 +39,18 @@ public class Book {
 	@JoinColumn(name = "BookNumber")//column holds FK value and name of column set through "name attribute"
 	private List<Review> allReviews;
 	
-	public Book(String title, String author, String category, String description, String isbn, double price,
-			String publishDate, String lastUpdatedOn) {
+	public Book(String title, String author, String category, String description, double price,int discount,
+			String publishDate, String language, String imageName) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.category = category;
 		this.description = description;
-		this.isbn = isbn;
 		this.price = price;
+		this.discount=discount;
 		this.publishDate = publishDate;
-		this.lastUpdatedOn = lastUpdatedOn;
+		this.language=language;
+		this.imageName=imageName;
 	}
 	
 }//end class

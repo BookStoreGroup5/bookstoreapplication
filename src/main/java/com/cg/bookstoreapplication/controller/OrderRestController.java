@@ -68,7 +68,7 @@ public OrderRestController() {
 			return new ResponseEntity<Order>(deletedOrder,HttpStatus.OK);
 		}
 	}
-	@GetMapping("/order/view/{oID}")
+	@GetMapping("/order/view/{id}")
 	public ResponseEntity<Order> viewOrder(@PathVariable Integer oID)throws Exception
 	{
 		Order viewOrder=orderService.viewOrder(oID);

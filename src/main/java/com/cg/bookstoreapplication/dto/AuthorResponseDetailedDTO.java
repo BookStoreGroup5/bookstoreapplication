@@ -13,6 +13,6 @@ public class AuthorResponseDetailedDTO {
 	
 	private String authorName;
 	private int noOfBooksPublished;
-	private String registeredContactDetails;
-	private String category;
+	private String about;
+	private String imageName;
 }

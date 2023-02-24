@@ -23,22 +23,25 @@ public class Author {
 	private int authorId;
 	
 	private String authorName;
+	private String about;
 	private int noOfBooksPublished;
 	private String email;
-	private int phoneNumber;
-	private String category;
+	private String phoneNumber;
+	
+	private String imageName;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "AuthorNumber")//column holds FK value and name of column set through "name attribute"
 	private List<Book> allBooks;
 
-	public Author(String authorName, int noOfBooksPublished, String email, int phoneNumber,String category) {
+	public Author(String authorName, int noOfBooksPublished, String email,String about, String phoneNumber,String imageName) {
 		super();
 		this.authorName = authorName;
 		this.noOfBooksPublished = noOfBooksPublished;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
-		this.category = category;
+		this.about=about;
+		this.imageName=imageName;
 	}
 	
 	

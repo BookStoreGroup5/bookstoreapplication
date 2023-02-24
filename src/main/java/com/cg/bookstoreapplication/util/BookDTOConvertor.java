@@ -22,7 +22,7 @@ public class BookDTOConvertor {
 	
 	public BookDTO getBookDTO(Book b)
 	{
-		BookDTO obj = new BookDTO(b.getBookId(),b.getTitle(),b.getAuthor());
+		BookDTO obj = new BookDTO(b.getBookId(),b.getTitle(),b.getAuthor(),b.getLanguage());
 		return obj;
 	}
 	
@@ -36,8 +36,9 @@ public class BookDTOConvertor {
 		bookdto.setDescription(b.getDescription());
 		bookdto.setPrice(b.getPrice());
 		bookdto.setPublishDate(b.getPublishDate());
-		bookdto.setLastUpdatedOn(b.getLastUpdatedOn());;
-		
+		bookdto.setDiscount(b.getDiscount());
+		bookdto.setLanguage(b.getLanguage());
+		bookdto.setImageName(b.getImageName());
 		return bookdto;
 	}
 }//end class

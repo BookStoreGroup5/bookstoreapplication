@@ -50,8 +50,10 @@ public class IBookServiceImpl implements IBookService  {
 	}
 
 	@Override
-	public boolean deleteBook(int bookId) {
-		 bookRepository.getReferenceById(bookId);
+	@Transactional
+	public Boolean deleteBook(int bookId) {
+		Book b = bookRepository.getReferenceById(bookId);
+		bookRepository.delete(b);
 		 return true;
 		
 	}
@@ -147,6 +149,58 @@ public class IBookServiceImpl implements IBookService  {
 				throw new NullPointerException("Either Book "+bookFromDB+"or Author "+authorFromDB+"is Null ");
 			}
 	}
+
+	@Override
+	public List<Book> findBooksbyLanguage(String language) throws Exception {
+		// TODO Auto-generated method stub
+	
+		List<Book> book = bookRepository.findByLanguage(language);
+		
+		if(book.isEmpty())
+			throw new BookNotFoundException("There is no book in the language : "+language);
+		return book;
+	}
+
+	@Override
+	public List<Book> findBooksbyDiscount() {
+		// TODO Auto-generated method stub
+		List<Book> output= new ArrayList<>();
+		List<Book> book=bookRepository.findAll();
+		for (Book element : book) {
+			if(element.getDiscount()>=10)
+			{
+				output.add(element);
+			}
+		}
+		return output;
+	}
+
+	@Override
+	public List<Book> findByAuthorName(String authorName) throws Exception {
+		
+		if(authorName!=null)
+		{
+			List<Book> savedBook = bookRepository.findByAuthor(authorName);
+			if(savedBook!=null) return savedBook;
+			else
+				throw new BookNotFoundException("There is no book in DB with title : "+authorName);
+		}
+		return null;
+	}
+
+	@Override
+	public List<Book> findBookByCategoryAndLanguage(String category, String language) throws Exception {
+		if(category != null & language!=null)
+		{
+			List<Book> savedBook = bookRepository.findByCategoryAndLanguage(category, language);
+			if(savedBook!= null) return savedBook;
+			else
+				 throw new BookNotFoundException("There is Book in DB with title "+category+"and the author"+language);
+		}
+		return null;
+		
+	}
+	
 	
 	
 

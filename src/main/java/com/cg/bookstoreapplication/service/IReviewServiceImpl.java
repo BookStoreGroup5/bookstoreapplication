@@ -18,7 +18,6 @@ import com.cg.bookstoreapplication.repository.IReviewRepository;
 
 @Service
 public class IReviewServiceImpl implements IReviewService {
-
 	@Autowired
 	IReviewRepository reviewRepository;
 	
@@ -42,6 +41,12 @@ public class IReviewServiceImpl implements IReviewService {
 		Review review1 = reviewRepository.save(review);
 
 		return review1;
+	}
+	
+	@Override
+	public List<Review> listAllReviewsByBookId(int bookId){
+		List<Review> myList=reviewRepository.findAllByBookId(bookId);
+		return myList;
 	}
 
 	
@@ -75,7 +80,7 @@ public class IReviewServiceImpl implements IReviewService {
 
 	
 
-	@Override
+	/*@Override
 	public Review getReviewByCustomerId(int customerId) {
 		if (customerId >= 1) {
 			Review savedReview = reviewRepository.getReviewByCustomerId(customerId);
@@ -87,7 +92,7 @@ public class IReviewServiceImpl implements IReviewService {
 		}
 		return null;
 	}
-
+*/
 	
 	
 
@@ -103,4 +108,6 @@ public class IReviewServiceImpl implements IReviewService {
 		}
 		return null;
 	}
+
+	
 }

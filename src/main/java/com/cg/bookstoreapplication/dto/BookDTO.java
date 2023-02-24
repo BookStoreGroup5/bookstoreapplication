@@ -12,4 +12,5 @@ public class BookDTO {
 	private int bookId;
 	private String title;
 	private String author;
+	private String language;
 }

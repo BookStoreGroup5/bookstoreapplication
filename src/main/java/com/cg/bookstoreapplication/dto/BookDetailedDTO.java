@@ -16,8 +16,10 @@ public class BookDetailedDTO {
 	private String author;
 	private String category;
 	private String description;
-	
+	private int discount;
 	private double price;
 	private String publishDate;
-	private String lastUpdatedOn;
+	private String language;
+	private String imageName;
+	
 }

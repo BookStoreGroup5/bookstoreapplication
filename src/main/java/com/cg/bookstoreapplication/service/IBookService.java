@@ -14,7 +14,7 @@ public interface IBookService {
 
 	public Book createBook(Book b) throws Exception;
 	public List<Book> listAllBooks()throws Exception;
-	public boolean deleteBook(int bookId);
+	public Boolean deleteBook(int bookId);
 	
 	
 	public List<Book> listBooksByCategory(String category) throws Exception;
@@ -25,6 +25,13 @@ public interface IBookService {
 	
 	public Book updateAuthorByBookId(int authorId, int bookId) throws Exception;
 	
+	public List<Book> findBooksbyLanguage(String language) throws Exception;
+	
+	public List<Book> findBooksbyDiscount();
+	
+	public List<Book> findByAuthorName(String authorName) throws Exception;
+	
+	public List<Book> findBookByCategoryAndLanguage(String category,String language) throws Exception;
 	
 	
 }

@@ -12,10 +12,12 @@ import com.cg.bookstoreapplication.entities.Book;
 public interface IBookRepository extends JpaRepository<Book,Integer> {
 	
 	public Book findByTitleAndAuthor(String title,String author);
+	public List<Book> findByCategoryAndLanguage(String category,String author);
 	public Book findByTitle(String title);
-	public Book findByAuthor(String authorName);
+	public List<Book> findByAuthor(String authorName);
 	
 	public List<Book> findByCategory(String category);
+	public List<Book> findByLanguage(String language);
 	
 	
 	//public List<Book> listBestSellingBook();
