@@ -1,0 +1,33 @@
+<h3>Add Author details</h3>
+<div style="margin-left: 15%;width: 5%; height:30%; margin-bottom: 20%;">
+    <form (ngSubmit)="doFormSubmit()" #authhorForm="ngForm">
+        <div>
+            <label>AuthorName</label>
+            <input type="text" [(ngModel)]="a.authorName" pattern="[a-zA-Z]+" name="authorName" #authorName="ngModel" required>
+        </div>
+        <div>
+            <label>About</label>
+            <input type="text" [(ngModel)]="a.about" pattern="[a-zA-Z]+" name="about" #about="ngModel">
+        </div>
+        <div>
+            <label>NoOfBooksPublished</label>
+            <input type="number" [(ngModel)]="a.noOfBooksPublished"  name="noOfBooksPublished" #noOfBooksPublished="ngModel">
+        </div>
+        <div>
+            <label>Email</label>
+            <input type="email" [(ngModel)]="a.email"  name="email" #email="ngModel">
+        </div>
+        <div>
+            <label>PhoneNumber</label>
+            <input type="text" [(ngModel)]="a.phoneNumber" name="email" #number="ngModel">
+
+        </div>
+        <div>
+            <label>Image</label>
+            <input type="text" [(ngModel)]="a.imageName" name="imageName" #imagename="ngModel">
+        </div>
+
+        <br/>
+        <button  type="submit" class="btn btn-primary" >Add Author</button>
+    </form>
+</div>

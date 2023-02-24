@@ -1,0 +1,93 @@
+<h3>Add Book Details</h3>
+
+<div style="margin-left: 15%;width: 5%; height:30%; margin-bottom: 20%;">
+   
+    <form (ngSubmit)="doFormSubmit()" #bookForm="ngForm">
+        
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" [(ngModel)]="b.title"  pattern="[a-zA-Z]+"  name="title" #title="ngModel" required>
+            <div *ngIf="title.invalid">
+                <span style="color: red;" *ngIf="title.errors?.['required']">
+                   
+                   Title is required Field 
+               </span> 
+               <span style="color: red;" *ngIf="title.errors?.['pattern']">
+                   Title is not valid
+               </span>
+             </div>
+        </div>
+        <div class="form-group">
+            <label>Author</label>
+            <input type="text" [(ngModel)]="b.author" pattern="[a-zA-Z]+" name="author" #author="ngModel" required>
+            <div *ngIf="author.invalid">
+                <span style="color: red;" *ngIf="author.errors?.['required']">
+                   
+                   Author Name is required Field 
+               </span> 
+               <span style="color: red;" *ngIf="author.errors?.['pattern']">
+                   Author Name is not valid
+               </span>
+             </div>
+        </div>
+        <div class="form-group">
+            <label>category</label>
+                <select  [(ngModel)]="b.category" name="category" #category="ngModel">
+                     <option slected>select </option>
+                     <option value="Biographies&Memoirs">Biographies&Memoirs</option>
+                     <option value="Fiction">Fiction</option>
+                     <option value="General">General</option>
+                     <option value="History&Humanities">History&Humanities</option>
+                     <option value="Lifestyle">Lifestyle</option>
+                     <option value="Technology&Engineering">Technology&Engineering</option>
+                     
+               </select>            
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" [(ngModel)]="b.description" name="description" #description="ngModel">
+        </div>
+        <div class="form-group">
+            <label>Price</label>
+            <input type="text" [(ngModel)]="b.price" name="price"   pattern="[0-9][0-9]+" #price="ngModel" required>
+            <div *ngIf="price.invalid">
+                <span style="color: red;" *ngIf="price.errors?.['required']">
+                   
+                   Price is required Field 
+               </span> 
+               <span style="color: red;" *ngIf="price.errors?.['pattern']">
+                   Price is not valid
+               </span>
+             </div>
+        </div>
+        <div class="form-group">
+            <label>Discount</label>
+            <input type="text" [(ngModel)]="b.discount" name="discount" #discount="ngModel">
+        </div>
+        <div class="form-group">
+            <label>PublishDate</label>
+            <input type="date" [(ngModel)]="b.publishDate" name="publishDate" #publishDate="ngModel">
+        </div>
+        <div class="form-group">
+            <label>language</label>
+            <select [(ngModel)]="b.language" name="language" #language="ngModel">
+                <option value="disabled">Select</option>
+                <option value="Telugu">Telugu</option>
+                <option value="Hindi">Hindi</option>
+                <option value="English">English</option>
+                <option value="Korean" >French</option>
+                <option value="German">German</option>
+               
+            </select>
+       </div>
+       <div class="form-group">
+            <label>Image</label>
+            <input type="text" [(ngModel)]="b.imageName" name="imageName" #imageName="ngModel" placeholder="imagename.jpg">
+
+       </div>
+       <br/>
+        <button  type="submit" class="btn btn-primary" >Add Book</button>   
+    </form>  
+</div>
+
+   
