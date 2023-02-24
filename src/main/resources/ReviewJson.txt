@@ -1,0 +1,7 @@
+{
+"bookid":"5",
+"customerName":"kriti",
+"customerId":"12",
+"comment":"must read",
+"rating":4
+}

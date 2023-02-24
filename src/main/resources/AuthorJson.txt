@@ -1,0 +1,8 @@
+{
+    "authorName":"sravya",
+    "noOfBooksPublished": 9,
+    "email" : "kavya@gmail.com",
+    "phoneNumber" : 913314792,
+    "category":"thriller"
+
+}
