@@ -1,0 +1,27 @@
+
+
+<div  style="margin-left: 10%;"  *ngFor="let book of allBooks" >
+    <table>
+        <tr>
+            <td> 
+                <img src="/assets/images/{{book.imageName}}" alt="image" width="120px" height="150px">
+            </td>
+            <td>
+                <h2>{{book.title}} </h2>
+                <p> {{book.description}} </p>
+                <hr/>
+                <span><b>Price</b>
+                    <span [style]="book.price<2000?priceLowCss:priceNormalCSS" ><i>Rs</i>{{book.price}}</span>  
+                    <i *ngIf="book.discount>0"> 
+                        with {{book.discount}}% Off 
+                        <span *ngIf="book.discount>15">
+                            <b style="color:#FFBF00"><u> *Recommended</u></b>
+                        </span>
+                    </i> 
+                </span> 
+                <br/>         
+            </td>    
+        </tr>
+    </table>
+    
+</div>
