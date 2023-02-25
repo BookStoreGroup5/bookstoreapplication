@@ -1,0 +1,13 @@
+{
+    "userName" : "sravani" ,
+    "date" : "2023-01-12" ,
+    "category" : "autobiography" ,
+    "bookId" : 867,
+    "transactionMode" : "online",
+    "customerId" : 126,
+    "quantity" : 1,
+    "orderStatus" : "processing",
+    "totalAmount" : 690
+
+
+}
