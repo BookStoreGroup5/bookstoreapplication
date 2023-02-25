@@ -1,0 +1,14 @@
+from Local Storage<hr><br>
+    <div><i>Book Id :- </i> {{bookId}}</div>
+    <div><i>Book Name :- </i>{{title}}</div>
+    <div> <i>Author :- </i>{{author}}</div>
+    <div><i>Category :- </i> {{category}}</div>
+    <div><i>language :-</i>{{language}}</div>
+    <div><i>About :- </i> {{description}}</div>
+    <div> <i>Price :- </i>{{price}}</div>
+    <div><i>publishDate :- </i>{{publishDate}}</div>
+
+
+    <br>
+    <button value="{{bookId}}" (click)="goForBuy(book.value)" #book> Buy Product </button>
+    <button>Add Review</button> 

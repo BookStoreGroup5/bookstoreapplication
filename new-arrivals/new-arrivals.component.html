@@ -1,0 +1,34 @@
+<table style="margin-left: 30%;">
+    <tr>
+        <td><b> Date</b></td>
+        <td><input type="date" #date></td>
+    </tr>
+</table>
+
+<div  style="margin-left: 10%;"  *ngFor="let b of allBooks" >
+    <div *ngIf="" >
+
+    </div>
+    <table>
+        <tr>
+
+            <td> 
+                <h2>{{b.title}} </h2>
+                <p> {{b.description}} </p>
+                <hr/>
+                <span> Price <span [style]="b.price<1000?priceLowCss:priceNormalCSS" >{{b.price}}</span>  
+                    <i *ngIf="b.discount>0"> 
+                        with {{b.discount}}% Off 
+                        <span *ngIf="b.discount>9">
+                            <b style="color: blue; font-family: Georgia, 'Times New Roman', Times, serif;"><u> Recommended</u></b>
+                        </span>
+                    </i>
+                </span> 
+                <br/>
+                <hr/>     
+                <br/>    
+            </td>
+
+        </tr>
+    </table>
+    </div>

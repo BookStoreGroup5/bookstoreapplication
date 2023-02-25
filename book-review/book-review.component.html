@@ -1,0 +1,42 @@
+<h1>Book Review Form</h1>
+
+<form (ngSubmit)="onSubmit()" #bookReviewForm="ngForm">
+  <tr>
+  <div class="form-group">
+    <label for="bookId">Book Id</label>
+    <input type="text" class="form-control" id="bookId" name="bookId"
+           [(ngModel)]="model.bookId" placeholder="Enter BookId e.g 101" required>
+
+  </div>
+</tr>
+<br><br>
+
+<tr>
+  <div class="form-group">
+    <label for="rating">Rating </label>
+    <div class="star-rating">
+      <span class="star" [class.filled]="model.rating >= 1" (click)="model.rating = 1">&#9733;</span>
+      <span class="star" [class.filled]="model.rating >= 2" (click)="model.rating = 2">&#9733;</span>
+      <span class="star" [class.filled]="model.rating >= 3" (click)="model.rating = 3">&#9733;</span>
+      <span class="star" [class.filled]="model.rating >= 4" (click)="model.rating = 4">&#9733;</span>
+      <span class="star" [class.filled]="model.rating >= 5" (click)="model.rating = 5">&#9733;</span>
+    </div>
+  </div>
+
+</tr>
+<br><br>
+<tr>
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <textarea class="form-control" id="comment" name="comment"
+              [(ngModel)]="model.comment" placeholder="Enter comment e.g Good"></textarea>
+  </div>
+</tr>
+<br><br>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<div *ngIf="status == true" class="alert alert-success mt-3">Your review has been submitted successfully.</div>
+<div *ngIf="status == false" class="alert alert-danger mt-3">An error occurred while submitting your review.</div>

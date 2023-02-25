@@ -1,0 +1,73 @@
+<table>
+    <tr>
+        <td >
+            <div class="Wishlist">
+                <b>Wishlist</b> <br/>
+                {{wishListCount}}
+            </div> 
+
+        </td>
+    </tr>
+</table>
+<div>
+    <table>
+        <tr>
+            <td>Book By Category
+                <select #category (change)="veiwAllBooksByCategory(category.value)">
+                    <option slected>select </option>
+                     <option>Biographies&Memoirs</option>
+                     <option >Fiction</option>
+                     <option >General</option>
+                     <option >History&Humanities</option>
+                     <option>Lifestyle</option>
+                     <option>Technology&Engineering</option>
+                </select>
+            </td>
+            <td>Book By Language
+                <select #language (change)="veiwBooksByLanguage(language.value)">
+                    <option value="disabled">Select</option>
+                    <option value="Telugu">Telugu</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="English">English</option>
+                    <option value="Korean" >French</option>
+                    <option value="German">German</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+
+<div  style="margin-left: 10%;"  *ngFor="let b of allBooks" >
+    <table>
+        <tr>
+            <td> 
+                <img src="/assets/images/{{b.imageName}}" alt="image" width="120px" height="150px">
+            </td>
+            <td>
+                <h2>{{b.title}} </h2>
+                <p> {{b.description}} </p>
+                <hr/>
+                <span><b>Price</b>
+                    <span [style]="b.price<2000?priceLowCss:priceNormalCSS" ><i>Rs</i>{{b.price}}</span>  
+                    <i *ngIf="b.discount>0"> 
+                        with {{b.discount}}% Off 
+                        <span *ngIf="b.discount>15">
+                            <b style="color:#FFBF00"><u> *Recommended</u></b>
+                        </span>
+                    </i> 
+                </span> 
+                <br/>         
+            </td>    
+        </tr>
+    </table>
+    <button class="avgreview" value="bookId" (click)="avgReview(b.bookId)" #book>AvgReview</button>
+    <button class="wishlistbutton" value="{{b.bookId}}" (click)="addWishlist(book.value)" #book> Add to Wishlist </button>
+
+    <button value="Add Order" (click)="placeOrder(b.imageName,b.title,b.description,b.price,b.discount)"> Place Order </button> 
+
+    <button  style="background-color: antiquewhite;" (click)="addreview()">Add review</button>
+    <button value="Add Order1" (click)="addOrder()" #order> add order  </button>
+</div>
+

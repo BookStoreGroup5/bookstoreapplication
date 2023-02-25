@@ -1,0 +1,14 @@
+<div *ngFor="let a of allAuthors">
+
+    <table>
+        <tr>
+            <td> 
+                <img src="/assets/images/{{a.imageName}}" alt="image" width="120px" height="150px">
+            </td> 
+            <td style="margin-right: 65%;"><h3>{{a.authorName}} </h3></td>
+            <!--<td>{{a.about|shortInfo}}</td> -->
+            <button (click)="viewBooks(a.authorName)">viewBooks</button>
+        </tr>
+    </table>
+</div>
+
