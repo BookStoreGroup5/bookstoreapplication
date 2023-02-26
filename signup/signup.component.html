@@ -1,0 +1,139 @@
+<div style="width: 50%;background-color: rgb(246, 125, 82);">
+    <form style="width: 50%;margin-left: 25%;" (ngSubmit)=" doFormSubmit() " class="form-horizontal" #myForm="ngForm" >     
+        <div class="mb-3">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" [(ngModel)]="b.firstName" id="firstName" name="firstName"
+                #firstName="ngModel" required pattern="[0-9]*[a-zA-Z_]+[0-9]*">
+            <div *ngIf="firstName.invalid">
+                <span style="color: red;" *ngIf="firstName.errors?.['required']">
+
+                    First Name is required Field
+                </span>
+                <span style="color: red;" *ngIf="firstName.errors?.['pattern']">
+                    First Name is not valid
+                </span>
+            </div>
+            <span style="color: rgb(4, 205, 51);" *ngIf="firstName.valid">
+                First Name is valid
+            </span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control" [(ngModel)]="b.lastName" id="lastName" name="lastName"
+                #lastName="ngModel" required pattern="[0-9]*[a-zA-Z_]+[0-9]*">
+            <div *ngIf="lastName.invalid">
+                <span style="color: red;" *ngIf="lastName.errors?.['required']">
+
+                    Last Name is required Field
+                </span>
+                <span style="color: red;" *ngIf="lastName.errors?.['pattern']">
+                    Last Name is not valid
+                </span>
+            </div>
+            <span style="color: rgb(4, 205, 51);" *ngIf="lastName.valid">
+                Last Name is valid
+            </span>
+        </div>
+
+
+
+        <div class="mb-3">
+            <label class="form-label">EmailId</label>
+            <input type="text" class="form-control" [(ngModel)]="b.emailId" id="emailId" name="emailId"
+                #emailId="ngModel" required pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$">
+            <div *ngIf="emailId.invalid">
+                <span style="color: red;" *ngIf="emailId.errors?.['required']">
+
+                    EmailId is required Field
+                </span>
+                <span style="color: red;" *ngIf="emailId.errors?.['pattern']">
+                    EmailId is not valid
+                </span>
+            </div>
+            <span style="color: rgb(4, 205, 51);" *ngIf="emailId.valid">
+                EmailId is valid
+            </span>
+        </div>
+
+
+
+
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="text" class="form-control" [(ngModel)]="b.password" id="password" name="password"
+                #password="ngModel" required pattern="^^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
+            <div *ngIf="password.invalid">
+                <span style="color: red;" *ngIf="password.errors?.['required']">
+
+                    Password is required Field
+                </span>
+                <span style="color: red;" *ngIf="password.errors?.['pattern']">
+                    Password is not valid
+                </span>
+            </div>
+            <span style="color: rgb(4, 205, 51);" *ngIf="password.valid">
+                Password is valid
+            </span>
+        </div>
+
+        <Address>
+
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" [(ngModel)]="b.address" id="address" name="address"
+                #address="ngModel" required pattern="(\d{1,}) [a-zA-Z0-9\s]+(\.)? [a-zA-Z]+(\,)? [A-Z]{2} [0-9]{5,6}">
+            <div *ngIf="address.invalid">
+                <span style="color: red;" *ngIf="address.errors?.['required']">
+
+                   Address is required Field
+                </span>
+                <span style="color: red;" *ngIf="address.errors?.['pattern']">
+                    Address is not valid
+                </span>
+            </div>
+            <span style="color: rgb(4, 205, 51);" *ngIf="address.valid">
+               Address is valid
+            </span>
+
+        </Address>
+
+
+
+
+        <div class="mb-3">
+            <label class="form-label">Contact Number</label>
+            <input type="text" class="form-control" [(ngModel)]="b.phoneNumber" id="phoneNumber" name="phoneNumber"
+                pattern="^((\\+91-?)|0)?[0-9]{10}$" #phoneNumber="ngModel" required>
+            <div *ngIf="phoneNumber.invalid">
+                <span style="color: red;" *ngIf="phoneNumber.errors?.['required']">
+
+                    Contact Number is required Field
+                </span>
+                <span style="color: red;" *ngIf="phoneNumber.errors?.['pattern']">
+                    Contact Number is not valid
+                </span>
+            </div>
+            <span style="color: rgb(4, 205, 51);" *ngIf="phoneNumber.valid">
+                Contact Number is valid
+            </span>
+        </div>
+
+
+
+        <div class="mb-3">
+            <label class="form-label">gender</label>
+            <input type="text" class="form-control" [(ngModel)]="b.gender" id="gender" name="gender"
+                 #gender="ngModel" required>
+                 </div>
+
+
+
+
+
+
+
+        <button  type="submit" class="btn btn-primary" [disabled]="myForm.form.invalid " >Add User</button>
+    </form>
+</div>
+<br>
