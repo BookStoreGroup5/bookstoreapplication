@@ -1,0 +1,46 @@
+
+
+<div *ngFor="let a of allAuthors">
+
+    <table>
+        <tr>
+            <td> 
+                <img src="/assets/images/{{a.imageName}}" alt="image" width="120px" height="150px">
+            </td> 
+            <td style="margin-right: 65%;"><h3>{{a.authorName}} </h3></td>
+            <td>{{a.about|shortInfo}}</td> 
+            <td><button (click)="viewBooks(a.authorName)">viewBooks</button></td>
+        </tr>
+    </table>
+</div>
+<div  style="margin-left: 10%;"  *ngFor="let b of allBooks" >
+    <table>
+        <tr>
+            <td> 
+                <img src="/assets/images/{{b.imageName}}" alt="image" width="120px" height="150px">
+            </td>
+            <td>
+                <h2>{{b.title}} </h2>
+                <p> {{b.description}} </p>
+                <hr/>
+                <span><b>Price</b>
+                    <span [style]="b.price<2000?priceLowCss:priceNormalCSS" ><i>Rs</i>{{b.price}}</span>  
+                    <i *ngIf="b.discount>0"> 
+                        with {{b.discount}}% Off 
+                        <span *ngIf="b.discount>15">
+                            <b style="color:#FFBF00"><u> *Recommended</u></b>
+                        </span>
+                    </i> 
+                </span> 
+                <br/>         
+            </td>    
+        </tr>
+    </table>
+</div>
+
+
+
+ 
+
+
+

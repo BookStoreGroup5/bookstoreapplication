@@ -1,0 +1,18 @@
+
+<h2>Enter Your Address</h2>
+
+<div>
+    <form>
+        <table>
+            <tr>
+                <td><label>Name</label></td>
+                <td><input type="text" value="{{userName}}" #name></td>
+            </tr>
+            <tr>
+                <td><label>HouseNo./buildingNo</label></td>
+                <td><input type="text"   value="{{userAddress}}"  #address></td>
+            </tr>
+        </table>
+    </form>
+    <button (click)="placeOrder(name.value,address.value)">placeOrder</button>
+</div>

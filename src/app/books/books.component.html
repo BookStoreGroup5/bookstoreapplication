@@ -1,0 +1,99 @@
+<table>
+    <tr>
+        <td >
+            <div class="Wishlist">
+                <b>Wishlist</b> <br/>
+                {{wishListCount}}
+            </div> 
+               
+        </td>
+    </tr>
+</table>
+<div>
+    <table>
+        <tr>
+            <td>Book By Category
+                <select #category (change)="veiwAllBooksByCategory(category.value)">
+                    <option slected>select </option>
+                     <option>Biographies&Memoirs</option>
+                     <option >Fiction</option>
+                     <option >General</option>
+                     <option >History&Humanities</option>
+                     <option>Lifestyle</option>
+                     <option>Technology&Engineering</option>
+                </select>
+            </td>
+            <td>Book By Language
+                <select #language (change)="veiwBooksByLanguage(language.value)">
+                    <option value="disabled">Select</option>
+                    <option value="Telugu">Telugu</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="English">English</option>
+                    <option value="Korean" >French</option>
+                    <option value="German">German</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    
+</div>
+
+
+<div  style="margin-left: 10%;"  *ngFor="let b of allBooks" >
+    <table>
+        <tr>
+            <td> 
+                <img src="/assets/images/{{b.imageName}}" alt="image" width="120px" height="150px">
+            </td>
+            <td>
+                <h2>{{b.title}} </h2>
+                <p> {{b.description}} </p>
+                <hr/>
+                
+                <span><b>Price</b>
+                    <span [style]="b.price<2000?priceLowCss:priceNormalCSS" ><i>Rs</i>{{b.price}}</span>  
+                    <i *ngIf="b.discount>10" style="color: firebrick;"> 
+                         {{b.discount}}% Off 
+                        <span *ngIf="b.discount>15">
+                            <b style="color:#FFBF00"><u> *Recommended</u></b>
+                        </span>
+                        
+                    </i> 
+                </span> 
+                <br/>         
+            </td>    
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td><button class="buybutton"value="{{b.bookId}}" (click)="goForBuy(b.bookId,b.title,b.price,b.discount)"> Buy</button></td>
+            <td><button class="wishlistbutton" value="{{b.bookId}}" (click)="addWishlist(book.value)" #book> Add to Wishlist </button></td>
+            <td><button  style="background-color: antiquewhite;" (click)="addreview()">write review</button></td>
+        </tr>
+        <tr>
+            
+            <td><button class="avgreview" value="bookId" (click)="getReviews(b.bookId)" #book>view Review</button></td>
+            
+        </tr>
+    </table>
+<br/>
+<div class="card card-body" *ngIf="showReview==true ">
+    Average Review <b> {{a}} </b>
+    
+                            <div *ngFor="let x of allReviews">
+                                <table><td style="width: 30%;">{{x.rating}}</td>
+                                    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                                
+                        
+                                    <td style="width: 30%;">{{x.comment}}</td>
+            
+                                    <td style="width: 40%;color:rgb(79, 79, 243);font-style: italic;font-weight: bold;"> Verified</td>
+                                </table>
+                            </div>
+    
+
+
+
+
+

@@ -1,0 +1,16 @@
+<h3>Order Details</h3>
+
+<div><i>Book Id :- </i> {{bookId}}</div>
+    <div><i>Book Name :- </i>{{title}}</div>
+    
+    <div> <i>Price :- </i>{{price}}</div>
+    <div><i>Discount:-</i>{{discount}}</div>
+    <div><i>TotalAmount:-</i>{{totalAmount}}</div>
+    
+    <br>
+    <button value="{{bookId}}" (click)="goForBuy(book.value)" #book> Buy</button>
+    <button  (click)="addreview()">write review</button>
+   
+
+
+
